@@ -1,0 +1,122 @@
+basePath: /
+definitions:
+  gorm.DeletedAt:
+    properties:
+      time:
+        type: string
+      valid:
+        description: Valid is true if Time is not NULL
+        type: boolean
+    type: object
+  models.Book:
+    properties:
+      author:
+        example: Charles Dickens
+        format: string
+        type: string
+      createdAt:
+        type: string
+      deletedAt:
+        $ref: '#/definitions/gorm.DeletedAt'
+      id:
+        type: integer
+      name:
+        example: A Tale of Two Cities
+        format: string
+        type: string
+      publication:
+        example: Harper Collins
+        format: string
+        type: string
+      updatedAt:
+        type: string
+    type: object
+host: localhost:9010
+info:
+  contact:
+    email: support@swagger.io
+    name: API Support
+    url: http://www.swagger.io/support
+  description: This is a Bookstore Application.
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  termsOfService: http://swagger.io/terms/
+  title: Bookstore Application
+  version: "1.0"
+paths:
+  /book:
+    get:
+      consumes:
+      - application/json
+      description: Get all books in DB.
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/models.Book'
+            type: array
+      summary: Get all books
+      tags:
+      - books
+  /book/{bookId}:
+    delete:
+      consumes:
+      - application/json
+      description: Delete a Book in DB.
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Book'
+      summary: Delete a Book.
+      tags:
+      - book-delete
+    get:
+      consumes:
+      - application/json
+      description: Get books by Id in DB.
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Book'
+      summary: Get books by Id.
+      tags:
+      - book
+    post:
+      consumes:
+      - application/json
+      description: Create a Book in DB.
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Book'
+      summary: Create a Book.
+      tags:
+      - book-create
+    put:
+      consumes:
+      - application/json
+      description: Update a Book in DB.
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Book'
+      summary: Update a Book.
+      tags:
+      - book-update
+swagger: "2.0"

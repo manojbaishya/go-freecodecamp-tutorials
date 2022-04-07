@@ -1,0 +1,48 @@
+{
+    // See https://go.microsoft.com/fwlink/?LinkId=733558
+    // for the documentation about the tasks.json format
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Build Go App",
+            "type": "shell",
+            "command": "go build -o bin/app cmd/main.go",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        },
+        {
+            "label": "Run Go App",
+            "type": "shell",
+            "command": "bin/app",
+            "group": {
+                "kind": "none"
+            }
+        },
+        {
+            "label": "Build and Run Go App",
+            "type": "shell",
+            "command": "go build -o bin/app cmd/main.go && bin/app",
+            "group": {
+                "kind": "none"
+            }
+        },
+        {
+            "label": "Run Go App without building",
+            "type": "shell",
+            "command": "go run cmd/main.go",
+            "group": {
+                "kind": "none"
+            }
+        },
+        {
+            "label": "Generate Swagger Documentation",
+            "type": "shell",
+            "command": "swag init --parseDependency --parseInternal --parseDepth 1 --dir cmd,pkg/controllers,pkg/models --output docs",
+            "group": {
+                "kind": "none"
+            }
+        }
+    ]
+}
